@@ -59,8 +59,9 @@
 		var text = document.getElementsByTagName("h2");
 		var milestones = document.getElementsByTagName("h3");
 
-		var simple_name = function() {
-			
+		var simple_name = function(event) {
+			event.preventDefault();
+
 			points++;
 
 			for (var i = 0; i < text.length; i++) {
@@ -80,6 +81,7 @@
 		};
 
 		butt.addEventListener("click", simple_name);
+		butt.addEventListener("touchstart", simple_name);
 
 		var another_function = function() {
 			butt.textContent = "Go on! Click me to get points!"
