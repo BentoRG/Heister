@@ -34,6 +34,18 @@
 			color:darkolivegreen;
 		}
 
+		.winner {
+			font-size: 45px;
+
+			border: 5px solid darkolivegreen;
+			border-radius: 20px;
+			padding: 20px;
+			margin: 5px;
+
+			background-color: limegreen;
+			color: darkolivegreen;
+		}
+
 	</style>
 </head>
 <body>
@@ -76,6 +88,13 @@
 				milestones[0].innerHTML = "Most recent milestone of yours: <em>you've reached 250 points!</em>"
 			} else if (points >= 100) {
 				milestones[0].innerHTML = "Most recent milestone of yours: <em>you've reached 100 points!</em>"
+			}
+
+			if (points === 1000) {
+				butt.remove();
+
+				text[0].className += " winner";
+				text[0].innerHTML = "You have actually <em>WON THE GAME!</em>";
 			}
 
 		};
