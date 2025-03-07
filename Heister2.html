@@ -10,16 +10,100 @@
 			font-family: fantasy;
 		}
 
+		p {
+			font-family: monospace;
+		}
+
+		.side {
+			width: 50px;
+			height: 50px;
+
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+
+		#intro {
+			font-family: serif;
+			color: gray;
+		}
+
+		#state {
+			font-family: cursive;
+			font-size: 30px;
+		}
+
 	</style>
 </head>
 <body>
 
 	<h1>Heister: the 1+1</h1>
 
-	<p>Nothing here yet...<br>
-		Nothing but this precise title</p>
+	<p id="intro">Afinal de contas eu voltei pra fazer outra página... <br>
+		Dessa vez eu estarei trazendo uma página que simula um JOGO DA FORCA.</p>
+	<p>Digite a tecla da letra que você acha fazer parte da palavra a ser adivinhada.</p>
+	<p>Pressione a tecla "delete" para zerar o jogo.</p>
+	<p>Se a sua quantidade de erros chegar a 6 você perde o jogo!</p>
 
+	<button class="side"> - </button>
+	<button class="side"> - </button>
+	<button class="side"> - </button>
+	<button class="side"> - </button>
+	<button class="side"> - </button>
+
+	<p id="juana">Aqui aparecerá a quantidade de erros seus!</p>
+	<p id="wrongies">Letras erradas</p>
+
+	<p id="state"></p>
+
+	<script>
+		
+		var mistakes = 0;
+
+		var letters = document.getElementsByClassName("side");
+		var erros = document.getElementById("juana");
+		var wrongies = document.getElementById("wrongies");
+
+		var funny = function(event) {
+
+			if (event.key === "b") {
+				letters[0].textContent = "B";
+			} else if (event.key === "e") {
+				letters[1].textContent = "E";
+			} else if (event.key === "n") {
+				letters[2].textContent = "N";
+			} else if (event.key === "t") {
+				letters[3].textContent = "T";
+			} else if (event.key === "o") {
+				letters[4].textContent = "O";
+			} else if (event.key === "Backspace") {
+				for (var i = 0; i < letters.length; i++) {
+					letters[i].textContent = " - ";
+				};
+
+				mistakes = 0;
+				erros.textContent = "Aqui aparecerá a quantidade de erros seus!";
+				wrongies.textContent = "Letras erradas";
+				state.textContent = "";
+			} else {
+				mistakes++;
+				erros.textContent = "ERROS ATÉ AGORA: "+mistakes+"!";
+				wrongies.textContent += " - "+event.key;
+
+				if (mistakes >= 6) {
+					state.textContent = "VOCÊ PERDEU!";
+				}
+			};
+
+			if (letters[0].textContent === "B" && letters[1].textContent === "E" && letters[2].textContent === "N" && letters[3].textContent === "T" && letters[4].textContent === "O") {
+				state.textContent = "VOCÊ GANHOU!";
+			};
+		};
+
+		document.addEventListener("keydown", funny);
+
+	</script>
+
+	<br>
 	<a href="index.html">Go back to the MENU!</a>
-
 </body>
 </html>
